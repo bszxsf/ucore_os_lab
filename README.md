@@ -1,20 +1,20 @@
-INTRODUCTION
-============
-ucore os labs was used as OS Experiments in OS Course Of Dept. of Computer Science & Technology, Tsinghua University.
-
-NEWS
+介绍
 ====
-- 2019.03.01: [step_by_step rcore os labs from scratch](https://github.com/LearningOS/rcore_step_by_step) is in progress. Thanks Qingling Pan, Fengyuan Liu's great work!
-- 2019.01.19: [rcore os labs(pre-alpha version)](https://github.com/oscourse-tsinghua/rcore_plus/tree/lab8-rv32) on RISC-V(32bit) were released. Thanks Runji Wang, Wei Zhang, Zhenyang Dai, Jiajie Chen, Yuekai Jia, Cheng Lu...'s great work!
-- 2019.01.19: [rcore os labs(pre-pre-alpha version)](https://github.com/oscourse-tsinghua/rcore_plus/tree/lab8-aarch64) on Raspberry Pi(AARCH 64bit) were released. Thanks Yuekai Jia, Runji Wang, Jiajie Chen...'s great work!
-- 2018.04.03：ucore os labs were ported on RISC-V(64bit) CPU（privileged arch spec 1.10). You can access [repo's riscv64-priv-1.10 branch](https://github.com/chyyuu/ucore_os_lab/tree/riscv64-priv-1.10). Thanks Zhengxing Shi's great work!
-- 2018.03.18: Weixiao Huang provided https://github.com/weixiao-huang/silver-spoon to support os labs in docker environment on windows/macos/linux. [details](https://github.com/weixiao-huang/silver-spoon/tree/master/docs)
-- 2018.02.03：ucore os labs were ported on RISC-V(32bit) CPU（privileged arch spec 1.10). You can access [repo's riscv32-priv-1.10 branch](https://github.com/chyyuu/ucore_os_lab/tree/riscv32-priv-1.10). Thanks  Wei Zhang's great work!
+ucore os labs是用于清华大学计算机科学与技术系的操作系统课程实验。
 
-MAINTAINERS
-===========
+新闻
+====
+- 2019.03.01: [来自scratch的手把手rcore os labs实验](https://github.com/LearningOS/rcore_step_by_step)正在进行。感谢Qingling Pan，Fengyuan Liu的卓越贡献。
+- 2019.01.19: [rcore os labs (pre-alpha版本)](https://github.com/oscourse-tsinghua/rcore_plus/tree/lab8-rv32)在RISC-V(32bit)上的版本已发布。感谢Runji Wang，Wei Zhang，Zhenyang Dai，Jiajie Chen，Yuekai Jia，Cheng Lu等人的卓越贡献。
+- 2019.01.19: [rcore os labs (pre-pre-alpha版本)](https://github.com/oscourse-tsinghua/rcore_plus/tree/lab8-aarch64)在树莓派(AARCH 64bit)上的版本已发布。感谢Yuekai Jia，Runji Wang，Jiajie Chen等人的卓越贡献。
+- 2018.04.03：ucore os labs完成了到RISC-V(64bit) CPU（privileged arch spec 1.10)的移植。你可以通过[仓库的riscv64-priv-1.10分支](https://github.com/chyyuu/ucore_os_lab/tree/riscv64-priv-1.10)查看。感谢Zhengxing Shi的卓越贡献。
+- 2018.03.18: Weixiao Huang提供了https://github.com/weixiao-huang/silver-spoon来支持os labs在windows/macos/linux系统下，在docker环境中的支持。[查看细节](https://github.com/weixiao-huang/silver-spoon/tree/master/docs)
+- 2018.02.03：ucore os labs完成了到RISC-V(32bit) CPU（privileged arch spec 1.10)的移植。你可以通过[仓库的riscv32-priv-1.10分支](https://github.com/chyyuu/ucore_os_lab/tree/riscv32-priv-1.10)查看。感谢Wei Zhang的卓越贡献。
 
-OS course for Dept. CS. in Tsinghua Univ., and MOOC OS course
+维护人员
+========
+
+清华大学计算机科学与技术系操作系统课程，以及MOOC的操作系统课程
 -----------------------------------
 - Chen, Yu: yuchen@tsinghua.edu.cn http://soft.cs.tsinghua.edu.cn/~chen
 - Xiang, Yong: xyong@tsinghua.edu.cn
@@ -23,117 +23,117 @@ OS course for Dept. CS. in Tsinghua Univ., and MOOC OS course
 - Wang, Runji: wangrunji0408@163.com 
 - Jia, Yuekai: jiayk15@mails.tsinghua.edu.cn
 
-CONTENTS
-========
+内容
+====
 
-labs info
+实验基本信息
 ----------------
 ```
-lab0: preparing
-lab1: boot/protect mode/stack/interrupt
-lab2: physical memory management
-lab3: virtual memory management
-lab4: kernel thread management
-lab5: user process management
-lab6: scheduling
-lab7: mutex/sync
-lab8: filesystem
+lab0: 热身准备
+lab1: 启动和保护 模式，栈和中断（boot/protect mode/stack/interrupt）
+lab2: 物理内存管理
+lab3: 虚拟内存管理
+lab4: 内核线程管理
+lab5: 用户进程管理
+lab6: 线程调度（翻译存疑，原文为scheduling）
+lab7: 互斥量和同步（mutex/sync）
+lab8: 文件系统
 ```
 
-TESTED ENVIRONMENT
-==================
+已测试的环境
+============
 ```
 UBUNTU 16.04 x86-64: GCC-7.3 
 UBUNTU 14.04+: GCC-4.8.2+ CLANG-3.5+
 FEDORA 20+: GCC-4.8.2+
 ```
 
-EXERCISE STEPS
-==============
+练习步骤
+========
 ```
-0 Get the newest os lab src code/docs.(Insure you can connect to github in ubuntu running on VrtualBox)
-0.1 If you try to get all code
+0 获取最新的os lab源码和文档。（确保你可以在vbox虚拟机上运行的ubuntu连接到github）（译者注：本人使用的是VMware）
+0.1 如果你希望获取全部源码
   $rm -rf ucore_lab
   $git clone git://github.com/chyyuu/ucore_os_lab.git
   $cd ucore_lab
-0.2 If you cloned ucore_lab and only try to get the updated code
+0.2 如果你克隆了ucore_lab仓库，并且只希望获取升级了的代码
   $cd ucore_os_lab
   $git pull
-1 $cd labX  
-2 read code (specially the modified or added files)
-3 add your code
-4 compile your code
+1 $cd labX
+2 阅读源码（尤其是经过增改的文件）
+3 加入你的源码
+4 编译你的源码
   $make
-5 check your code
+5 检查你的成果
   $make qemu
-OR
+或者
   $make grade
 
-6 debug your code
+6 调试你的源码
   $make debug
 
-7 handin your code
+7 提交你的源码
   $make handin
 ```
 
-OPTION
-==============
-Now, ucore suuport LLVM/Clang-3.5 + 
-in step4:
+可选项
+======
+ucore现已支持LLVM/Clang-3.5 + 
+在第四步中：
   $ USELLVM=1 make
-then you will use clang to compile ucore
+然后你就可以用clang编译源码了
 
-GRADE/RANK
-==========
+评级
+====
 ```
-Superman: Finish all OS labs in one month by yourself
-Master: Finish all OS labs in two month by yourself
-Veteran: Finish all OS labs in three month by yourself
-Apprentice: Finish all OS labs in one semester with other guy's help
-```
-
-RESOURCE REPOSITORY
-===================
-```
-Basic OS labs (for students who learn OS course)
-The newest lab codes and docs is in https://github.com/chyyuu/ucore_os_lab
-
-Advanced OS labs (for OS geeks or hackers or guys with Superman/Master Rank)
-The newest lab codes and docs is in https://github.com/chyyuu/ucore_plus
+超人：在一个月内独立完成所有实验
+大师：在两个月内独立完成所有实验
+老兵：在三个月内独立完成所有实验
+学徒：在他人帮助下，一个学期（semester）内完成所有实验
 ```
 
+源码仓库
+========
+```
+基础OS labs （为学习操作系统的学生准备）
+查阅最新实验代码和文档： https://github.com/chyyuu/ucore_os_lab
 
-UCORERS (Contributors)
-======================
+进阶OS labs （为操作系统大佬、骇客，或者是超人、大师级玩家准备）
+查阅最新实验代码和文档： https://github.com/chyyuu/ucore_plus
+```
+
+
+UCORERS（贡献者）
+==================
 
 Junjie Mao, Yuheng Chen, Cong Liu, Yang Yang, Zhun Qu, Shengwei Ren, Wenlei Zhu, Cao Zhang, Tong Sen, Xu Chen, 
-Cang Nan, Yujian Fang, Wentao Han, Kaichen Zhang, Xiaolin Guo, Tianfan Xue, Gang Hu, Cao Liu, Yu Su,Xinhao Yuan, Wei Zhang, Kaixiang Lei...
+Cang Nan, Yujian Fang, Wentao Han, Kaichen Zhang, Xiaolin Guo, Tianfan Xue, Gang Hu, Cao Liu, Yu Su,Xinhao Yuan, Wei Zhang, Kaixiang Lei等
 
-Join us, OS research group in Tsinghua Univ.
-============================================
-If you are interested in OS Research/Development, we welcome you to joining our OS research group:
-- OS performance improvement for multicore architecture
-- fuzzing/symbolic execution technologies on OS for finding kernel bugs
-- improving performance and reliability on OS subsystem, such as device driver
-- design OS specification and build correct OS
-- OS & CPU(such as RISC-V）codesign
-- other topics about OS
+加入清华大学操作系统研究小组
+============================
+如果你对操作系统研究或开发有兴趣，清华大学操作系统研究小组欢迎你：
+- 多核架构下操作系统性能提升
+- 操作系统的fuzzing/符号执行技术，用于发现内核的bug
+- 提升操作系统子系统的性能和可靠性，例如设备驱动
+- 设计操作系统范式（翻译存疑，原文为specification），生成正确无误的操作系统
+- 操作系统和CPU（例如RISC-V）的代码符号（codesign）
+- 其他操作系统有关主题
 
-Just like [other great OS researchs ](https://github.com/chyyuu/aos_course/blob/master/readinglist.md)
+例如[其他激动人心的操作系统研究](https://github.com/chyyuu/aos_course/blob/master/readinglist.md)
 
-Send me email!
+请向研究小组发送邮件！
 
-OTHER INFO
-==========
-ucore is a teaching OS which is derived from xv6&jos in MIT, OS161 in Harvard and Linux.
+其他信息
+========
+ucore是一个教学用操作系统，它派生自麻省理工大学的xv6&jos，哈佛大学的OS161以及Linux。
 
-ucore was developed and used in Department of Computer Science & Technology, Institute for Interdisciplinary Information Sciences, Tsinghua University.
+ucore被研发和使用于清华大学计算机科学与技术系交叉信息研究院。
 
-The codes in the files that constitute xv6&jos are Copyright (2006-Current) Frans Kaashoek, Robert Morris, and Russ Cox and uses MIT License.
+构造了xv6&jos的源码文件版权属于Frans Kaashoek，Robert Morris，以及Russ Cox ，使用MIT许可证，版权自2006年起至现在。
 
-The codes in the files that constitute OS/161 are written by David A. Holland.
+构造了OS/161的源码文件由David A. Holland编写。
 
-The codes in the files that constitute ucore are Copyright (2010-Current) Yu Chen, Naizheng Wang, Yong Xiang and uses GPL License.
+构造了ucore的源码文件版权属于Yu Chen，Naizheng Wang，Yong Xiang，使用GPL许可证，版权自2010年起至现在。
 
-The documents in the files that constitute ucore are Copyright (2010-Current) Yu Chen, Yong Xiang and uses Creative Commons Attribution/Share-Alike (CC-BY-SA) License. 
+构造了ucore的文档版权属于Yu Chen, Yong Xiang，使用Creative Commons Attribution/Share-Alike (CC-BY-SA)许可证，版权自2010年起至现在。
 
