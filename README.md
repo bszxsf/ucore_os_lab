@@ -30,7 +30,7 @@ ucore os labs是用于清华大学计算机科学与技术系的操作系统课�
 ----------------
 ```
 lab0: 热身准备
-lab1: 启动和保护 模式，栈和中断（boot/protect mode/stack/interrupt）
+lab1: 启动，保护模式，栈和中断（boot/protect mode/stack/interrupt）
 lab2: 物理内存管理
 lab3: 虚拟内存管理
 lab4: 内核线程管理
